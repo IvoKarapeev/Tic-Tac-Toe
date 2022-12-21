@@ -4,6 +4,7 @@ import './App.css';
 
 import Board from './components/Board';
 import Score from './components/Score';
+import ResetButton from './components/ResetButton';
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
 
     const [board,setBoard] = useState(Array(9).fill(null));
     const [xPlaying,setXPlaying] = useState(true);
-    const [score,setScore] = useState({xScore:0,oScore:0})
+    const [score,setScore] = useState({xScore:0,oScore:0});
+    const [gameOver,setGameOver] = useState(false);
 
     const boxClick = (boxIndex) => {
         const updatedBoard = board.map((value,indx) => {
@@ -63,16 +65,23 @@ function App() {
             const [x,y,z] = WIN_CONDITIONS[i];
             
             if(board[x] && board[x] === board[y] && board[y] === board[z]) {
+                setGameOver(true);
                 return board[x];
             }
 
         }
     }
 
+    const resetScore = () => {
+        setGameOver(false);
+        setBoard(Array(9).fill(null));
+    }
+
     return (
         <div className="App">
             <Score score={score} xPlaying={xPlaying}/>
-            <Board board={board} onClick={boxClick}/>
+            <Board board={board} onClick={gameOver ? resetScore : boxClick}/>
+            <ResetButton resetBoard={resetScore}/>
         </div>
     );
 }
