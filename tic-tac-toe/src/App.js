@@ -5,6 +5,7 @@ import './App.css';
 import Board from './components/Board';
 import Score from './components/Score';
 import ResetButton from './components/ResetButton';
+import OnFire from './components/OnFire'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
     const [xPlaying,setXPlaying] = useState(true);
     const [score,setScore] = useState({xScore:0,oScore:0});
     const [gameOver,setGameOver] = useState(false);
+    const [onFire,setOnFire] = useState({x:false, o:false});
 
     const boxClick = (boxIndex) => {
         const updatedBoard = board.map((value,indx) => {
@@ -42,7 +44,7 @@ function App() {
                 let { xScore } = score;
                 xScore += 1; 
                 setScore({...score,xScore});
-
+                
             }else{
    
                 let { oScore } = score;
@@ -74,14 +76,24 @@ function App() {
 
     const resetScore = () => {
         setGameOver(false);
+
+        if (score.xScore - score.oScore >= 3) {
+            setOnFire({x:true,o:false});
+        } else if(score.oScore - score.xScore >= 3) {
+            setOnFire({x:false,o:true});
+        } else {
+            setOnFire({x:false,o:false});
+        }
+
         setBoard(Array(9).fill(null));
-    }
+    };
 
     return (
         <div className="App">
             <Score score={score} xPlaying={xPlaying}/>
             <Board board={board} onClick={gameOver ? resetScore : boxClick}/>
             <ResetButton resetBoard={resetScore}/>
+            <OnFire onFire={onFire}/>
         </div>
     );
 }
