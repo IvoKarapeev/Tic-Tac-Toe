@@ -1,10 +1,11 @@
 import './App.css';
 
+import Box from './components/Box';
 
 function App() {
     return (
         <div className="App">
-            <h1>Hello world!</h1>
+            <Box value='X' onClick={null}/>
         </div>
     );
 }
