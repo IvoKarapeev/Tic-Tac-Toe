@@ -1,7 +1,9 @@
 import { useState } from 'react'
 
 import './App.css';
+
 import Board from './components/Board';
+import Score from './components/Score';
 
 function App() {
 
@@ -18,6 +20,7 @@ function App() {
 
     const [board,setBoard] = useState(Array(9).fill(null));
     const [xPlaying,setXPlaying] = useState(true);
+    const [score,setScore] = useState({xScore:0,oScore:0})
 
     const boxClick = (boxIndex) => {
         const updatedBoard = board.map((value,indx) => {
@@ -28,7 +31,25 @@ function App() {
             }
         });
 
-        hasWinner(updatedBoard);
+        const winner = hasWinner(updatedBoard);
+
+        if(winner) {
+
+            if (winner === 'X') {
+
+                let { xScore } = score;
+                xScore += 1; 
+                setScore({...score,xScore});
+
+            }else{
+   
+                let { oScore } = score;
+                oScore += 1; 
+                setScore({...score,oScore});
+
+            }
+
+        };
 
         setBoard(updatedBoard);
 
@@ -42,7 +63,6 @@ function App() {
             const [x,y,z] = WIN_CONDITIONS[i];
             
             if(board[x] && board[x] === board[y] && board[y] === board[z]) {
-                console.log(board[x]);
                 return board[x];
             }
 
@@ -51,6 +71,7 @@ function App() {
 
     return (
         <div className="App">
+            <Score score={score} xPlaying={xPlaying}/>
             <Board board={board} onClick={boxClick}/>
         </div>
     );
