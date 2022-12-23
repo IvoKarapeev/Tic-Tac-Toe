@@ -6,7 +6,7 @@ const Score = ({ score, xPlaying }) => {
 
 
     return(
-        <div className={`score-board`}>
+        <div className={`score-board`} data-testid='score'>
             <span className={`score x-score ${!xPlaying && 'inactive'}`}>X - {xScore}</span>
             <span className={`score o-score ${xPlaying && 'inactive'}`}>O - {oScore}</span>
         </div>
