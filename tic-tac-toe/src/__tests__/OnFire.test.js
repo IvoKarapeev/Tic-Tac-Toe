@@ -27,4 +27,16 @@ describe('OnFire Component Testing',() => {
         const onFireElement = screen.getByTestId('on-fire');
         expect(onFireElement).toHaveTextContent('o is on Fire');
     });
-})
+    test('shoud render OnFire component with right class for X player',() => {
+        const onFire = {x:true, o:false}
+        render(<OnFire onFire={onFire}/>);
+        const playerOnFireElement = screen.getByTestId('on-fire-player');
+        expect(playerOnFireElement).toHaveClass('onfire-score x-fire');
+    });
+    test('shoud render OnFire component with right class for O player',() => {
+        const onFire = {x:false, o:true}
+        render(<OnFire onFire={onFire}/>);
+        const playerOnFireElement = screen.getByTestId('on-fire-player');
+        expect(playerOnFireElement).toHaveClass('onfire-score o-fire');
+    });
+});

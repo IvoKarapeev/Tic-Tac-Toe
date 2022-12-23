@@ -20,7 +20,7 @@ const OnFire = ({ onFire }) => {
     return(
         <div data-testid='on-fire'>
             { player[0] && 
-                <div className={`onfire-score ${player[0]}-fire`}>{player[0]} is on Fire</div>
+                <div data-testid='on-fire-player' className={`onfire-score ${player[0]}-fire`}>{player[0]} is on Fire</div>
             }
         </div>
     )
