@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Board Component Testing rendered Board component with different props 1`] = `
+<div
+  class="board"
+  data-testid="board"
+>
+  <button
+    class="box x"
+  >
+    X
+  </button>
+  <button
+    class="box o"
+  />
+  <button
+    class="box o"
+  />
+  <button
+    class="box x"
+  >
+    X
+  </button>
+  <button
+    class="box o"
+  />
+  <button
+    class="box o"
+  />
+  <button
+    class="box x"
+  >
+    X
+  </button>
+  <button
+    class="box o"
+  />
+  <button
+    class="box o"
+  />
+</div>
+`;
+
+exports[`Board Component Testing rendered Board component with right childs 1`] = `
+<div
+  class="board"
+  data-testid="board"
+>
+  <button
+    class="box o"
+  />
+  <button
+    class="box o"
+  />
+  <button
+    class="box o"
+  />
+  <button
+    class="box o"
+  />
+  <button
+    class="box o"
+  />
+  <button
+    class="box o"
+  />
+  <button
+    class="box o"
+  />
+  <button
+    class="box o"
+  />
+  <button
+    class="box o"
+  />
+</div>
+`;
